@@ -1,0 +1,27 @@
+{
+  "name": "best_chatapp",
+  "version": "1.0.0",
+  "description": "Chat app ( nodejs mongod )",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel-node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linh050297/Best_chatApp.git"
+  },
+  "author": "Van Linh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/linh050297/Best_chatApp/issues"
+  },
+  "homepage": "https://github.com/linh050297/Best_chatApp#readme"
+}
