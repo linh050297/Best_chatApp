@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 let Schema = mongoose.Schema;
 
-let ChatGroupSchema = new Schema({
+let NotificationSchema = new Schema({
     sender: {
         id: String,
         username: String,
@@ -19,4 +19,4 @@ let ChatGroupSchema = new Schema({
     createdAt: { type: Number, default: Date.now },
 });
 
-module.exports = mongoose.model("chat-group", ChatGroupSchema);
+module.exports = mongoose.model("notification", NotificationSchema);
