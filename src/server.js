@@ -1,6 +1,7 @@
 import express  from "express";
 import ConnectDB from "./config/connectDB";
-import ContactModel from "./models/contact.model";
+// import ContactModel from "./models/contact.model";
+import configViewEngine from "./config/viewEngine";
 require('dotenv').config();
 
 let app = express();
@@ -8,20 +9,18 @@ let app = express();
 //connect to MongoDB
 ConnectDB();
 
+//config view engine
+configViewEngine(app);
+
 let hostname = process.env.HOST_NAME;
 let port = process.env.PORT;
 
-app.get("/testdb", async (req,res)=>{
-    try {
-        let item = {
-            userId: "1717",
-            contactId: "abcbcd",
-        };
-        let contact = await ContactModel.createNew(item);
-        res.send(contact);
-    } catch (error) {
-        console.log(error);
-    }
+app.get("/testview", async (req,res)=>{
+    return res.render("auth/loginRegister");
+});
+
+app.get("/master", async (req,res)=>{
+    return res.render("main/master");
 });
 
 app.listen(port,hostname, (req, res)=>{
