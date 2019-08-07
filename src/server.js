@@ -3,6 +3,7 @@ import ConnectDB from "./config/connectDB";
 // import ContactModel from "./models/contact.model";
 import configViewEngine from "./config/viewEngine";
 import initRoutes from "./routes/web";
+import bodyParser from "body-parser";
 
 require('dotenv').config();
 
@@ -13,6 +14,9 @@ ConnectDB();
 
 //config view engine
 configViewEngine(app);
+
+//enable post data request
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //init all routes
 initRoutes(app);
