@@ -10,7 +10,9 @@ export const transErrors = {
     account_in_use: "Email đã đã được sử dụng, vui lòng tạo tài khoản với email khác !",
     account_removed: "Tài khoản đã bị xóa!",
     account_not_active: "Tài khoản chưa được xác thực",
-    token_undefined: "Mã xác nhận Token đã hết hạn hoặc không tồn tại!"
+    token_undefined: "Mã xác nhận Token đã hết hạn hoặc không tồn tại!",
+    login_failed: "Sai tài khoản hoặc mật khẩu.",
+    server_error: "Có lỗi ở phía server!"
 };
 
 export const transSuccess = {
@@ -22,7 +24,10 @@ export const transSuccess = {
         return `Đã gửi email xác thực tài khoản tới <strong>${userEmail}</strong> thành công. Vui lòng kiểm tra email để kích hoạt tài khoản.`
     },
 
-    account_active: `Kích hoạt tài khoản thành công bạn đã có thể đăng nhập rồi đó!`    
+    account_active: `Kích hoạt tài khoản thành công bạn đã có thể đăng nhập rồi đó!`,
+    loginSuccess: (username)=>{
+        return `Xin chào ${username}, bạn đã đăng nhập thành công <strong>^-^</strong>, have a nice day!`
+    }  
 }
 
 export const transMail = {
