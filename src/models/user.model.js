@@ -30,4 +30,30 @@ let UserSchema = new Schema({
     deleteAt: { type: Number, default: null }
 });
 
+UserSchema.statics = {
+    createNew(item){
+        return this.create(item);
+    },
+
+    findByEmail(email){
+        return this.findOne({"local.email": email}).exec();
+    },
+
+    removeById(id){
+        return this.findOneAndDelete({ _id: id }).exec();
+    },
+
+    verify(token){
+        return this.findOneAndUpdate(
+            { "local.verifyToken" : token },
+            { "local.isActive": true, "local.verifyToken" : null }
+        ).exec();
+    },
+
+    findByToken(token){
+        return this.findOne({"local.verifyToken": token}).exec();
+    }
+
+};
+
 module.exports = mongoose.model("user", UserSchema);
