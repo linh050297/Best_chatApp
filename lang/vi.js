@@ -27,7 +27,8 @@ export const transSuccess = {
     account_active: `Kích hoạt tài khoản thành công bạn đã có thể đăng nhập rồi đó!`,
     loginSuccess: (username)=>{
         return `Xin chào ${username}, bạn đã đăng nhập thành công <strong>^-^</strong>, have a nice day!`
-    }  
+    },
+    logout_success: "Bạn đã đăng xuất thành công"  
 }
 
 export const transMail = {

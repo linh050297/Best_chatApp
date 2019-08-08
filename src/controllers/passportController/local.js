@@ -36,8 +36,10 @@ let initPassportLocal = ()=>{
     //ghi thông tin user vào session
     passport.serializeUser((user, done)=>{
         done(null, user._id);
-    }); 
+    });
 
+    //fun dưới dc gọi bằng passport.session() bên server.js
+    //trả về userinfo cho req.user
     passport.deserializeUser((id, done)=>{
         UserModel.findUserById(id)
         .then( user => {
