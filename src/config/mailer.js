@@ -7,7 +7,6 @@ let clientId = process.env.CLIENT_ID;
 let clientSecret = process.env.CLIENT_SECRET;
 let refreshToken = process.env.REFRESH_TOKEN;
 let adminEmail = process.env.MAIL_USER;
-let adminPassword = process.env.MAIL_PASSWORD;
 let mailHost = process.env.MAIL_HOST;
 let mailPort = process.env.MAIL_PORT;
 

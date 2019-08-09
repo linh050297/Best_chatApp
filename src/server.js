@@ -8,7 +8,37 @@ import bodyParser from "body-parser";
 import connectFlash from "connect-flash";
 import configSession from "./config/session";
 import passport from "passport";
+import pem from "pem";
+import https from "https";
 
+//os và path dùng để giả lập pem https
+// import os from "os";
+// import path from "path";
+
+let hostname = process.env.HOST_NAME;
+let port = process.env.PORT;
+
+//giả lập https
+//   if (os.platform() === 'win32') {
+//     process.env.OPENSSL_CONF = path.join(__dirname, 'vendor', 'openssl', 'shared', 'openssl.cnf')
+//     pem.config({
+//       pathOpenSSL: path.join(__dirname,'vendor', 'openssl', os.arch() === 'x64' ? 'x64' : 'ia32', 'openssl.exe'),
+//     })
+//   }
+
+// pem.createCertificate({ days: 1, selfSigned: true }, function (err, keys) {
+//     if (err) {
+//         console.log(err.stack);
+//         return;
+//     }
+//     console.log('%s\n\n%s', keys.serviceKey, keys.certificate);
+
+// ******** để giả lập https thì đưa tất cả vào đây ***********
+
+// https.createServer({ key: keys.serviceKey, cert: keys.certificate }, app).listen(port,hostname, (req, res)=>{
+//         console.log(`Hello my friend ,server running at ${hostname}:${port}`);
+//     });
+// });
 
 
 let app = express();
@@ -33,10 +63,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //init all routes
-initRoutes(app);
-
-let hostname = process.env.HOST_NAME;
-let port = process.env.PORT;
+initRoutes(app); 
 
 
 
