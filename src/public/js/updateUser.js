@@ -82,10 +82,27 @@ $(document).ready(function(){
             processData: false,
             data: userAvarta,
             success: function(result){
-
+                console.log(result);
+                //display success
+                //biến result lấy từ result bên userController.js
+                $(".user-modal-alert-success").find("span").text(result.message);
+                $(".user-modal-alert-error").css("display", "none");
+                $(".user-modal-alert-success").css("display", "block");
+                //update avatar at navbar
+                $("#navbar-avatar").attr("src", result.imageSrc);
+                //update originAvatarSrc
+                originAvatarSrc = result.imageSrc;
+                //reset
+                $("#input-btn-cancel-update-user").click();
             },
             error: function(error){
-                
+                //display error
+                console.log(error);
+                $(".user-modal-alert-error").find("span").text(error.responseText);
+                $(".user-modal-alert-success").css("display", "none");
+                $(".user-modal-alert-error").css("display", "block");
+                // reset all
+                $("#input-btn-cancel-update-user").click();
             }
         });
         // console.log(userAvarta);
@@ -96,6 +113,7 @@ $(document).ready(function(){
     $("#input-btn-cancel-update-user").bind("click", function(){
         userAvarta = null;
         userInfo = {};
+        $("#input-change-avatar").val(null);
         $("#user-modal-avatar").attr("src", originAvatarSrc);
     })
 })

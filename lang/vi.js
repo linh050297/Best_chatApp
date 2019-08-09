@@ -12,7 +12,9 @@ export const transErrors = {
     account_not_active: "Tài khoản chưa được xác thực",
     token_undefined: "Mã xác nhận Token đã hết hạn hoặc không tồn tại!",
     login_failed: "Sai tài khoản hoặc mật khẩu.",
-    server_error: "Có lỗi ở phía server!"
+    server_error: "Có lỗi ở phía server!",
+    avatar_type: "Kiểu file không hợp lệ, chỉ chấp nhận ( jpg, png, jpeg )",
+    avatar_size: "File quá lớn, vui lòng chọn file có dung lượng nhỏ hơn 1MB"
 };
 
 export const transSuccess = {
@@ -28,7 +30,8 @@ export const transSuccess = {
     loginSuccess: (username)=>{
         return `Xin chào ${username}, bạn đã đăng nhập thành công <strong>^-^</strong>, have a nice day!`
     },
-    logout_success: "Bạn đã đăng xuất thành công"  
+    logout_success: "Bạn đã đăng xuất thành công",
+    avatar_updated: "Cập nhật hình đại diện thành công",
 }
 
 export const transMail = {
