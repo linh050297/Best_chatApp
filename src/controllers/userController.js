@@ -41,7 +41,10 @@ let updateAvatar = (req, res)=>{
             //update user
             let userUpdate = await user.updateUser(req.user._id, updateUserItem);
             //remove old avatar
-            await fsExtra.remove(`${app.avatar_directory}/${userUpdate.avatar}`); //do findByIdAndUpdate bên UserModel khi update sẽ trả về dữ liệu cũ nên ở đây userUpdate.avatar sẽ là hình cũ
+            if(userUpdate.avatar != "avatar-default.jpg"){
+                await fsExtra.remove(`${app.avatar_directory}/${userUpdate.avatar}`); //do findByIdAndUpdate bên UserModel khi update sẽ trả về dữ liệu cũ nên ở đây userUpdate.avatar sẽ là hình cũ
+            }
+            
             let result = {
                 message: transSuccess.avatar_updated,
                 imgSrc: `/images/users/${req.file.filename}`
