@@ -45,7 +45,8 @@ let initRoutes = ( app )=>{
     router.get("/", auth.checkLoggedIn, home.getHomeController );
     router.get("/logout", auth.checkLoggedIn, auth.getLogout);
     router.put("/user/update-avatar", auth.checkLoggedIn, user.updateAvatar );
-    router.put("/user/update-info", auth.checkLoggedIn, userValidationIndex.updateInfo, user.updateInfo)
+    router.put("/user/update-info", auth.checkLoggedIn, userValidationIndex.updateInfo, user.updateInfo);
+    router.put("/user/update-password", auth.checkLoggedIn, userValidationIndex.updatePassword, user.updatePassword );
 
     return app.use("/", router);
 };
