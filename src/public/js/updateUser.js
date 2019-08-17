@@ -360,11 +360,7 @@ $(document).ready(function(){
                 return false;
               }
             if (result.value) {
-            //   Swal.fire(
-            //     'Thành Công!',
-            //     'Mật khẩu của bạn đã được thay đổi',
-            //     'success'
-            //   );
+            
               callUpdateUserPassword(); //gọi ajax cập nhật mật khẩu
             }
           })
