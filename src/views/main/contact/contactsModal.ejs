@@ -39,7 +39,7 @@
                     <div id="contacts" class="tab-pane fade">
                         <div class="find-user-bottom">
                             <ul class="contactList">
-                                <li class="_contactList" data-uid="user._id">
+                                <li class="_contactList" data-uid="<%= user._id %>">
                                     <div class="contactPanel">
                                         <div class="user-avatar">
                                             <img src="images/users/default-avatar-trungquandev-01.jpg" alt="">
@@ -53,10 +53,10 @@
                                         <div class="user-address">
                                             <span>&nbsp Hà Nội, Việt Nam.</span>
                                         </div>
-                                        <div class="user-talk" data-uid="user._id">
+                                        <div class="user-talk" data-uid="<%= user._id %>">
                                             Trò chuyện
                                         </div>
-                                        <div class="user-remove-contact action-danger" data-uid="user._id">
+                                        <div class="user-remove-contact action-danger" data-uid="<%= user._id %>">
                                             Xóa liên hệ
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@
                     <div id="request-contact-sent" class="tab-pane fade">
                         <div class="find-user-bottom">
                             <ul class="contactList">
-                                <li class="_contactList" data-uid="user._id">
+                                <li class="_contactList" data-uid="<%= user._id %>">
                                     <div class="contactPanel">
                                         <div class="user-avatar">
                                             <img src="images/users/default-avatar-trungquandev-01.jpg" alt="">
@@ -81,7 +81,7 @@
                                         <div class="user-address">
                                             <span>&nbsp Hà Nội, Việt Nam.</span>
                                         </div>
-                                        <div class="user-remove-request-sent action-danger" data-uid="user._id">
+                                        <div class="user-remove-request-sent action-danger" data-uid="<%= user._id %>">
                                             Hủy yêu cầu
                                         </div>
                                     </div>
@@ -92,7 +92,7 @@
                     <div id="request-contact-received" class="tab-pane fade">
                         <div class="find-user-bottom">
                             <ul class="contactList">
-                                <li class="_contactList" data-uid="user._id">
+                                <li class="_contactList" data-uid="<%= user._id %>">
                                     <div class="contactPanel">
                                         <div class="user-avatar">
                                             <img src="images/users/default-avatar-trungquandev-01.jpg" alt="">
@@ -106,10 +106,10 @@
                                         <div class="user-address">
                                             <span>&nbsp Hà Nội, Việt Nam.</span>
                                         </div>
-                                        <div class="user-acccept-contact-received" data-uid="user._id">
+                                        <div class="user-acccept-contact-received" data-uid="<%= user._id %>">
                                             Chấp nhận
                                         </div>
-                                        <div class="user-reject-request-contact-received action-danger" data-uid="user._id">
+                                        <div class="user-reject-request-contact-received action-danger" data-uid="<%= user._id %>">
                                             Xóa yêu cầu
                                         </div>
                                     </div>

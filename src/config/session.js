@@ -18,8 +18,8 @@ let sessionStore = new MongoStore({
  */
 let config = ( app )=>{
     app.use(session({ 
-        key: "express.sid", //phải giống key bên socket io passport
-        secret: "linhhz77",
+        key: process.env.SESSION_KEY, //phải giống key bên socket io passport
+        secret: process.env.SESSION_SECRET, //phải giống secret bên socket io passport
         store: sessionStore,
         resave: true,
         saveUninitialized: false,
