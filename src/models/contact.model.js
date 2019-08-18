@@ -17,7 +17,7 @@ ContactSchema.statics = {
     },
 
     findAllByUser(userId){
-        return this.findAllByUser({
+        return this.find({
             $or: [
                 {"userId": userId},
                 {"contactId": userId}
@@ -41,7 +41,7 @@ ContactSchema.statics = {
     },
 
     removeRequestContact(userId, contactId){
-        return this.remove({
+        return this.deleteOne({
             $and: [
                 {"userId": userId},
                 {"contactId": contactId}

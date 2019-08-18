@@ -1,5 +1,7 @@
 import authValidation from "./authValidation";
-import userValidation from "./userValidation"
+import userValidation from "./userValidation";
+import contactValidation from "./contactValidation";
 
 export const authValid = authValidation;
 export const userValidationIndex = userValidation;
+export const contactValid = contactValidation;

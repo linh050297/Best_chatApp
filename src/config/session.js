@@ -16,9 +16,9 @@ let sessionStore = new MongoStore({
  * 
  * @param {*} app from express module
  */
-let configSession = ( app )=>{
+let config = ( app )=>{
     app.use(session({ 
-        key: "express.sid",
+        key: "express.sid", //phải giống key bên socket io passport
         secret: "linhhz77",
         store: sessionStore,
         resave: true,
@@ -27,4 +27,4 @@ let configSession = ( app )=>{
     }));
 };
 
-module.exports = configSession;
+module.exports = {config: config  , sessionStore: sessionStore};

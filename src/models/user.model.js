@@ -76,12 +76,12 @@ UserSchema.statics = {
     },
 
     findAllForAddContact(deprecatedUserIds, keyword){
-        return this.findAllForAddContact({
+        return this.find({
             $and: [
                 {"_id": {$nin: deprecatedUserIds}},
                 {"local.isActive": true},
                 {$or: [
-                    {"username": {"$regex":  new RegExp(keyword, "i")}},
+                    {"username": {"$regex":  new RegExp(keyword, "i")}}, // i có thể search bằng cả chữ hoa và chữ thường
                     {"local.email": {"$regex": new RegExp(keyword, "i")}},
                     {"facebook.email": {"$regex": new RegExp(keyword, "i")}},
                     {"google.email": {"$regex": new RegExp(keyword, "i")}}
@@ -93,7 +93,7 @@ UserSchema.statics = {
 
 UserSchema.methods = {
     comparePassword(password){
-        return bcrypt.compare(password, this.local.password); //return a promise has result true of false
+        return bcrypt.compare(password, this.local.password); //return a promise has result true or false
     }
 }
 
