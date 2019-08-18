@@ -1,7 +1,6 @@
 require('dotenv').config();
 import express  from "express";
 import ConnectDB from "./config/connectDB";
-// import ContactModel from "./models/contact.model";
 import configViewEngine from "./config/viewEngine";
 import initRoutes from "./routes/web";
 import bodyParser from "body-parser";
@@ -109,7 +108,7 @@ io.use(passportSocketIo.authorize({
         return accept(null,true)
     },
     fail: (data, message, error, accept)=>{
-        if(error){ console.log("fail to connection to socketIO",message); };
+        if(error){ console.log("Fail to connection to socketIO",message); };
         return accept(new Error(message), false);
     },     
   }));

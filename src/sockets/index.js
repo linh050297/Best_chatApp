@@ -1,6 +1,6 @@
 import addNewContact from "./contact/addNewContact";
 
-let initSockets = (io)=>{
+let initSockets = (io)=>{ //io from socket io library
     addNewContact(io);
     //
 }
