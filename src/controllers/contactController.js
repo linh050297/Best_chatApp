@@ -16,7 +16,7 @@ let findUsersContact = async (req, res) =>{
         let currentUserId = req.user._id;
         let keyword = req.params.keyword;
         let users = await contact.findUsersContact(currentUserId, keyword);
-        return res.render("main/contact/sections/_findUsersContact", {users});
+        return res.render("main/contact/sections/_findUserContact", {users});
     } catch (error) {
         return res.status(500).send(error);
     }
