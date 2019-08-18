@@ -10,8 +10,8 @@ import passport from "passport";
 import http from "http";
 import socketio from "socket.io";
 import initSockets from "./sockets/index";
-import passportSocketIo from "passport.socketio";
 import cookieParser from "cookie-parser";
+import configSocketIo from "./config/socketIO";
 // import pem from "pem";
 // import https from "https";
 // import os from "os";
@@ -96,22 +96,7 @@ app.use(passport.session());
 //init all routes
 initRoutes(app); 
 
-io.use(passportSocketIo.authorize({
-    cookieParser: cookieParser,       // the same middleware you registrer in express
-    key:          'express.sid',       // the name of the cookie where express/connect stores its session_id
-    secret:       'session_secret',    // the session_secret to parse the cookie
-    store:        session.sessionStore,        // we NEED to use a sessionstore. no memorystore please
-    success: (data, accept)=>{
-        if(!data.user.logged_in){
-            return accept("Invalid user", false);
-        }
-        return accept(null,true)
-    },
-    fail: (data, message, error, accept)=>{
-        if(error){ console.log("Fail to connection to socketIO",message); };
-        return accept(new Error(message), false);
-    },     
-  }));
+configSocketIo.configSocketIo(io);
 
 //init all sockets
 initSockets(io);
