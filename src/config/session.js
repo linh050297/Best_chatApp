@@ -14,7 +14,7 @@ let sessionStore = new MongoStore({
 
 /**
  * 
- * @param {*} app from express module
+ * @param {app}  from express module
  */
 let config = ( app )=>{
     app.use(session({ 
