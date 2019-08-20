@@ -22,8 +22,8 @@ function removeRequestContact (){
 
 //lắng nghe sự kiện server gửi về
 socket.on("response-remove-request-contact", function(user){ //user is current user from emit addNewContact.js
-    $(".noti_content").find(`span[data-uid = ${user.id}]`).remove();
-
+    $(".noti_content").find(`div[data-uid = ${user.id}]`).remove(); //xóa ở popup
+    $("ul.list-notifications").find(`li>div[data-uid = ${user.id}]`).parent().remove(); //xóa trong bảng modal thông báo (parent là xóa cả phần tử cha)
     //xóa ở modal tab yêu cầu kết bạn
 
     decreaseNumberNotifContact("count-request-contact-received"); //trong tab quản lý liên lạc
