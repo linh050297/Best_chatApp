@@ -29,6 +29,15 @@ NotificationSchema.statics = {
         return this.find({
             "receiverId" : userId
         }).sort({"createAt" : -1}).limit(limit).exec();
+    },
+
+    countNotifUnread(userId){
+        return this.countDocuments({
+            $and: [
+                {"receiverId" : userId},
+                {"isRead": false}
+            ]
+        }).sort({"createAt" : -1}).exec();
     }
 }
 
@@ -40,15 +49,15 @@ const NOTIFICATION_CONTENT = {
     getContent: (notificationType, isRead, userId, username, userAvatar)=>{
         if(notificationType === NOTIFICATION_TYPES.ADD_CONTACT){
             if(!isRead){
-                return `<span class="notif-readed-false" data-uid="${ userId }">
-                    <img class="avatar-small" src ="images/users/${ userAvatar }" alt=""> 
-                    <strong>${ username }</strong> đã gửi cho bạn một lời mời kết bạn!
-                    </span><br><br><br>`;
-            }
-                return `<span class="" data-uid="${ userId }">
-                    <img class="avatar-small" src ="images/users/${ userAvatar }" alt=""> 
-                    <strong>${ username }</strong> đã gửi cho bạn một lời mời kết bạn!
-                    </span><br><br><br>`;
+                return `<div class="notif-readed-false" data-uid="${ userId }">
+                            <img class="avatar-small" src ="images/users/${ userAvatar }" alt=""> 
+                            <strong>${ username }</strong> đã gửi cho bạn một lời mời kết bạn!
+                        </div>`;
+            } 
+                return `<div class="" data-uid="${ userId }">
+                            <img class="avatar-small" src ="images/users/${ userAvatar }" alt=""> 
+                            <strong>${ username }</strong> đã gửi cho bạn một lời mời kết bạn!
+                        </div>`;
         };
         return "No mathching with any notification type!";
     }

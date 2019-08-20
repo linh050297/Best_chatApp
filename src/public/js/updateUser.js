@@ -227,7 +227,7 @@ function callUpdateUserInfo(){
         type: "put",
         data: userInfo,
         success: function(result){
-            console.log(result);
+            console.log("result",result);
             //display success
             //biến result lấy từ result bên userController.js
             $(".user-modal-alert-success").find("span").text(result.message);
@@ -276,7 +276,7 @@ function callUpdateUserPassword(){
             //reset all
             $("#input-btn-cancel-update-user-password").click();
             //logout after change password success
-           await callLogout();
+            await callLogout();
         },
         error: function(error){
             //display error
