@@ -18,7 +18,7 @@ function addContact(){
 //lắng nghe sự kiện server gửi về
 socket.on("response-add-new-contact", function(user){ //user is current user from emit addNewContact.js
     let notif = `<div class="notif-readed-false" data-uid="${ user.id }">
-                <img class="avatar-small" src ="images/users/${ user.avatar }" alt=""> 
+                <img class="avatar-small" src ="${ user.avatar }" alt=""> 
                 <strong>${ user.username }</strong> đã gửi cho bạn một lời mời kết bạn!
                 </div>`;
     $(".noti_content").prepend(notif); // những thông báo mới nhất sẽ lên đầu

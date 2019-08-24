@@ -8,7 +8,7 @@ let UserSchema = new Schema({
     gender: { type: String, default: 'male' },
     phone: { type: String, default: null },
     address: { type: String, default: null },
-    avatar: { type: String, default: "avatar-default.jpg" },
+    avatar: { type: String, default: "https://res.cloudinary.com/linhhz77/image/upload/v1566554157/yepj8o8cksysadpsxzgb.jpg" },
     role: { type: String, default: "user" },
     local: {
         email: { type: String, trim: true },

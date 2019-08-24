@@ -38,7 +38,16 @@ NotificationSchema.statics = {
                 {"isRead": false}
             ]
         }).sort({"createAt" : -1}).exec();
-    }
+    },
+
+    //get number of nitification with skip
+    readMore(userId, skip, limit){
+        return this.find({
+            "receiverId" : userId
+        }).sort({"createAt" : -1}).skip(skip).limit(limit).exec();
+    },
+
+    
 }
 
 const NOTIFICATION_TYPES = {
@@ -50,12 +59,12 @@ const NOTIFICATION_CONTENT = {
         if(notificationType === NOTIFICATION_TYPES.ADD_CONTACT){
             if(!isRead){
                 return `<div class="notif-readed-false" data-uid="${ userId }">
-                            <img class="avatar-small" src ="images/users/${ userAvatar }" alt=""> 
+                            <img class="avatar-small" src ="${ userAvatar }" alt=""> 
                             <strong>${ username }</strong> đã gửi cho bạn một lời mời kết bạn!
                         </div>`;
             } 
                 return `<div class="" data-uid="${ userId }">
-                            <img class="avatar-small" src ="images/users/${ userAvatar }" alt=""> 
+                            <img class="avatar-small" src ="${ userAvatar }" alt=""> 
                             <strong>${ username }</strong> đã gửi cho bạn một lời mời kết bạn!
                         </div>`;
         };
