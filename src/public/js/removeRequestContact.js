@@ -27,7 +27,7 @@ socket.on("response-remove-request-contact", function(user){ //user is current u
     //xóa ở modal tab yêu cầu kết bạn
 
     decreaseNumberNotifContact("count-request-contact-received"); //trong tab quản lý liên lạc
-    decreaseNumberNotificationContact("noti_contact_counter");
-    decreaseNumberNotificationContact("noti_counter");
+    decreaseNumberNotificationContact("noti_contact_counter", 1);
+    decreaseNumberNotificationContact("noti_counter", 1);
 
 });

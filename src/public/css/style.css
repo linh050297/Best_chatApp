@@ -1294,7 +1294,8 @@ label:focus,
 }
 
 .notif-readed-false {
-  background: #99c2ffb8
+  background: #99c2ffb8;
+  border-radius: 5px;
 }
 .display-none{
   display: none;
@@ -1313,11 +1314,11 @@ label:focus,
 
 .list-notifications li:hover {
   cursor: pointer;
-  background-color: #eceff1;
+  background-color: #1870f5b8;
   border-radius: 5px;
 }
 .list-notifications>li>div{
-  background: none;
+  /* background: none; */
   padding: 10px;
 }
 

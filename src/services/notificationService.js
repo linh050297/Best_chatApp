@@ -44,9 +44,24 @@ let readMore = (currentUserId, skipNumberNotif)=>{
         } catch (error) {
             rejects(error);
         }
-    })
+    });
+};
+
+//mark all as read
+let markAllAsRead = (currentUserId, targetUsers)=>{
+    return new Promise ( async (resolve, rejects)=>{
+        try {
+            await NotificationModel.model.markAllAsRead(currentUserId, targetUsers);
+            resolve(true);
+
+        } catch (error) {
+            console.log(`Error when mark notifications as read: ${error}`);
+            rejects(false);
+        }
+    });
 };
 
 module.exports = {  getNotifications: getNotifications,
                     countNotifUnread:countNotifUnread,
-                    readMore: readMore };
+                    readMore: readMore,
+                    markAllAsRead: markAllAsRead };

@@ -1,6 +1,6 @@
-function increaseNumberNotificationContact(className){
+function increaseNumberNotificationContact(className, number){
     let currentValue = +$(`.${className}`).text(); //dấu cộng chuyển string thành số còn mặc định sẽ là 0 
-    currentValue += 1;
+    currentValue += number;
 
     if(currentValue === 0 ){
         $(`.${className}`).css("display","none").html("");
@@ -9,9 +9,9 @@ function increaseNumberNotificationContact(className){
     }
 };
 
-function decreaseNumberNotificationContact(className){
+function decreaseNumberNotificationContact(className, number){
     let currentValue = +$(`.${className}`).text(); //dấu cộng chuyển string thành số còn mặc định sẽ là 0 
-    currentValue -= 1;
+    currentValue -= number;
 
     if(currentValue === 0 ){
         $(`.${className}`).css("display","none").html("");
