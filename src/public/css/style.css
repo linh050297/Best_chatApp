@@ -1322,7 +1322,7 @@ label:focus,
   padding: 10px;
 }
 
-.read-more-notif{
+.read-more-contacts, .read-more-contacts-received, .read-more-contacts-send{
   text-align: center;
 }
 
