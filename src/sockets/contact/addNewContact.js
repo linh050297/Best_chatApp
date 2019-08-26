@@ -13,6 +13,7 @@ let addNewContact = (io)=>{  // io from socket io lib
                 id: socket.request.user._id, // from passport socket 
                 username: socket.request.user.username, // from passport socket 
                 avatar: socket.request.user.avatar, // from passport socket 
+                address: (socket.request.user.address !== null ) ? socket.request.user.address : ""  // from passport socket
             };
 
             //gửi trả thông báo về 1 user được nhận thông báo kết bạn
