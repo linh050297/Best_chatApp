@@ -9,7 +9,6 @@ function addContact(){
                 $("#find-user").find(`div.user-remove-request-contact[data-uid = ${targetId}]`).css("display", "inline-block");
                 
                 let userInfoHtml = $("#find-user").find(`ul li[data-uid = ${targetId}]`).get(0).outerHTML; //get HTML 
-                console.log(userInfoHtml);
                 //thêm ở modal tab đang chờ xác nhận
                 $("#request-contact-sent").find("ul").prepend(userInfoHtml);
 

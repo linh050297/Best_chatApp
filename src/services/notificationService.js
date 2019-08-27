@@ -8,7 +8,7 @@ let getNotifications = (currentUserId)=>{
             let notifications = await NotificationModel.model.getByUserIdAndLimit(currentUserId, LIMIT_NUMBER_TAKEN);
 
             let getNotifContents = notifications.map( async (notification)=>{ //return về mảng mới
-                let sender = await UserModel.findUserById(notification.senderId);
+                let sender = await UserModel.findCustomDataUser(notification.senderId);
                 return NotificationModel.contents.getContent(notification.type, notification.isRead, sender._id, sender.username, sender.avatar);
             });
             resolve(await Promise.all(getNotifContents)); //do hàm map không đợi await thực thi xong mà nó cứ return ra nên dùng Promise.all để đợi tất cả cùng xong.
@@ -17,7 +17,7 @@ let getNotifications = (currentUserId)=>{
         }
     })
 }
-//count all notfication unread
+//count all notification unread
 let countNotifUnread = (currentUserId)=>{
     return new Promise ( async (resolve, rejects)=>{
         try {
@@ -36,7 +36,7 @@ let readMore = (currentUserId, skipNumberNotif)=>{
             let newNotifications = await NotificationModel.model.readMore(currentUserId, skipNumberNotif, LIMIT_NUMBER_TAKEN);
             
             let getNotifContents = newNotifications.map( async (notification)=>{ //return về mảng mới
-                let sender = await UserModel.findUserById(notification.senderId);
+                let sender = await UserModel.findCustomDataUser(notification.senderId);
                 return NotificationModel.contents.getContent(notification.type, notification.isRead, sender._id, sender.username, sender.avatar);
             });
             resolve(await Promise.all(getNotifContents)); //do hàm map không đợi await thực thi xong mà nó cứ return ra nên dùng Promise.all để đợi tất cả cùng xong.
