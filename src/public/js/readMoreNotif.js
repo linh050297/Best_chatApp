@@ -6,7 +6,7 @@ $(document).ready(function(){
         $(".lds-facebook").css("display","inline-block");
         
 
-        $.get(`/notification/read-more?skipNumber=${skipNumber}`,function(notifications){
+        $.get(`/notification/read-more?skipNumber=${skipNumber}`,function(notifications){ //query param
             if(!notifications.length){
                 alertify.notify("Không còn thông báo nào nữa!!!","error",7);
                 $("#link-read-more-notif").css("display","block");
