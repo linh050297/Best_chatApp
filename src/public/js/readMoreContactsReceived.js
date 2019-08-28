@@ -2,7 +2,6 @@
 $(document).ready(function(){
 $("#link-read-more-contacts-received").bind("click",function(){
     let skipNumber = $("#request-contact-received>div>ul.contactList").find("li").length;
-    console.log(skipNumber);
 
     $("#link-read-more-contacts-received").css("display","none");
     $(".lds-facebook").css("display","inline-block");
@@ -15,9 +14,8 @@ $("#link-read-more-contacts-received").bind("click",function(){
             $(".lds-facebook").css("display","none");
         }
         contacts.forEach(function(contact){
-            console.log("contact::",contact);
             
-            $("#request-contact-received>div>ul.contactList").append(`<li>${contact}</li>`); // thêm vào modal thông báo
+            $("#request-contact-received>div>ul.contactList").append(`${contact}`); // thêm vào modal thông báo
         });
         $(".lds-facebook").css("display","none");
         $("#link-read-more-contacts-received").css("display","block");

@@ -1,9 +1,9 @@
 import addNewContact from "./contact/addNewContact";
-import removeRequestContact from "./contact/removeRequestContact";
+import removeRequestContactSent from "./contact/removeRequestContactSent";
 
 let initSockets = (io)=>{ //io from socket io library
     addNewContact(io);
-    removeRequestContact(io);
+    removeRequestContactSent(io);
     //
 }
 

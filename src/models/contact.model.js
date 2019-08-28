@@ -40,7 +40,7 @@ ContactSchema.statics = {
         }).exec();
     },
 
-    removeRequestContact(userId, contactId){
+    removeRequestContactSent(userId, contactId){
         return this.deleteOne({
             $and: [
                 {"userId": userId},
@@ -169,7 +169,7 @@ const CONTACT_CONTENT = {
                             <div class="user-talk" data-uid="${userId}">
                                 Trò chuyện
                             </div>
-                            <div class="user-remove-contact action-danger" data-uid="${userId}">
+                            <div class="user-remove-contact action-danger display-important" data-uid="${userId}">
                                 Xóa liên hệ
                             </div>
                         </div>
@@ -191,7 +191,7 @@ const CONTACT_CONTENT = {
                             <div class="user-address">
                                 <span>&nbsp ${userAddress}</span>
                             </div>
-                            <div class="user-remove-request-sent action-danger" data-uid="${userId}">
+                            <div class="user-remove-request-contact-sent action-danger display-important" data-uid="${userId}">
                                 Hủy yêu cầu
                             </div>
                         </div>
@@ -216,7 +216,7 @@ const CONTACT_CONTENT = {
                             <div class="user-acccept-contact-received" data-uid="${userId}">
                                 Chấp nhận
                             </div>
-                            <div class="user-reject-request-contact-received action-danger" data-uid="${userId}">
+                            <div class="user-reject-request-contact-received action-danger " data-uid="${userId}">
                                 Xóa yêu cầu
                             </div>
                         </div>
