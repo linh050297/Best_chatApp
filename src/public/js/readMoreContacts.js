@@ -2,8 +2,7 @@ $(document).ready(function(){
     
     //read more contact
     $("#link-read-more-contacts").bind("click",function(){
-        let skipNumber = $("#link-read-more-contacts>div>ul.contactList").find("li").length;
-        console.log('skipNumber: ', skipNumber);
+        let skipNumber = $("#contacts>div>ul.contactList").find("li").length;
 
         $("#link-read-more-contacts").css("display","none");
         $(".lds-facebook").css("display","inline-block");
@@ -16,12 +15,11 @@ $(document).ready(function(){
                 $(".lds-facebook").css("display","none");
             }
             contacts.forEach(function(contact){
-                console.log("contact::",contact);
                 
-                $("#link-read-more-contacts>div>ul.contactList").append(`<li>${contact}</li>`); // thêm vào modal thông báo
+                $("#contacts>div>ul.contactList").append(`${contact}`); // thêm vào modal thông báo
             });
             $(".lds-facebook").css("display","none");
-                $("#link-read-more-contacts").css("display","block");
+            $("#link-read-more-contacts").css("display","block");
         }) //query params
     });
 
