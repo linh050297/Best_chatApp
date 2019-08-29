@@ -49,6 +49,15 @@ ContactSchema.statics = {
         }).exec();
     },
 
+    removeRequestContactReceived(userId, contactId){
+        return this.deleteOne({
+            $and: [
+                {"contactId": userId},
+                {"userId": contactId}
+            ]
+        }).exec();
+    },
+
     getContacts(userId, limit){
         return this.find({
             $and: [
@@ -216,7 +225,7 @@ const CONTACT_CONTENT = {
                             <div class="user-acccept-contact-received" data-uid="${userId}">
                                 Chấp nhận
                             </div>
-                            <div class="user-reject-request-contact-received action-danger " data-uid="${userId}">
+                            <div class="user-remove-request-contact-received action-danger " data-uid="${userId}">
                                 Xóa yêu cầu
                             </div>
                         </div>

@@ -11,10 +11,10 @@ function addContact(){
                 let userInfoHtml = $("#find-user").find(`ul li[data-uid = ${targetId}]`).get(0).outerHTML; //get HTML 
                 //thêm ở modal tab đang chờ xác nhận
                 $("#request-contact-sent").find("ul").prepend(userInfoHtml);
-
+                increaseNumberNotificationContact("noti_contact_counter",1); //calculateNotification.js
                 removeRequestContactSent();
 
-                increaseNumberNotifContact("count-request-contact-sent");
+                increaseNumberNotifContact("count-request-contact-sent");// calculateNotifContact.js
                 //xử lý realtime
                 socket.emit("add-new-contact", {contactId: targetId}); // gửi tên sự kiện truyền tham số
             }
@@ -30,9 +30,9 @@ socket.on("response-add-new-contact", function(user){ //user is current user fro
                 </div>`;
     $(".noti_content").prepend(notif); // những thông báo mới nhất sẽ lên đầu
     $("ul.list-notifications").prepend(`<li>${notif}</li>`); // thêm vào modal thông báo
-    increaseNumberNotificationContact("count-request-contact-received"); //trong tab quản lý liên lạc
-    increaseNumberNotificationContact("noti_contact_counter",1);
-    increaseNumberNotificationContact("noti_counter",1);
+    increaseNumberNotifContact("count-request-contact-received"); //trong tab quản lý liên lạc
+    increaseNumberNotificationContact("noti_contact_counter",1); //js/calculateNotification.js
+    increaseNumberNotificationContact("noti_counter",1); //js/calculateNotification.js
 
     let userInfoHtml = `<li class="_contactList" data-uid="${user.id}">
                             <div class="contactPanel">
@@ -51,11 +51,12 @@ socket.on("response-add-new-contact", function(user){ //user is current user fro
                                 <div class="user-acccept-contact-received" data-uid="${user.id}">
                                     Chấp nhận
                                 </div>
-                                <div class="user-reject-request-contact-received action-danger" data-uid="${user.id}">
+                                <div class="user-remove-request-contact-received action-danger" data-uid="${user.id}">
                                     Xóa yêu cầu
                                 </div>
                             </div>
                         </li>`
     //thêm ở modal yêu cầu kết bạn
-    $("#request-contact-received").find("ul").prepend(userInfoHtml);             
+    $("#request-contact-received").find("ul").prepend(userInfoHtml);        
+    removeRequestContactReceived();     
 });
