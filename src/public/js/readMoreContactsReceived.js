@@ -17,6 +17,7 @@ $("#link-read-more-contacts-received").bind("click",function(){
             
             $("#request-contact-received>div>ul.contactList").append(`${contact}`); // thêm vào modal thông báo
         });
+        removeRequestContactReceived();
         $(".lds-facebook").css("display","none");
         $("#link-read-more-contacts-received").css("display","block");
     }) //query params
