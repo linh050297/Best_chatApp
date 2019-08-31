@@ -196,7 +196,7 @@ label:focus,
 .contactPanel .user-add-new-contact,
 .contactPanel .user-talk,
 .contactPanel .user-remove-contact,
-.contactPanel .user-acccept-contact-received,
+.contactPanel .user-approve-request-contact-received,
 .contactPanel .user-remove-request-contact-sent,
 .contactPanel .user-remove-request-contact-received {
   box-sizing: border-box;
