@@ -44,7 +44,8 @@ ContactSchema.statics = {
         return this.deleteOne({
             $and: [
                 {"userId": userId},
-                {"contactId": contactId}
+                {"contactId": contactId},
+                {"status": false}
             ]
         }).exec();
     },
@@ -53,7 +54,8 @@ ContactSchema.statics = {
         return this.deleteOne({
             $and: [
                 {"contactId": userId},
-                {"userId": contactId}
+                {"userId": contactId},
+                {"status": false}
             ]
         }).exec();
     },
@@ -149,6 +151,15 @@ ContactSchema.statics = {
         }).sort({"createAt" : -1}).skip(skip).limit(limit).exec();
     },
 
+    approveRequestContactReceived(userId, contactId){
+        return this.update({
+            $and: [
+                {"contactId": userId},
+                {"userId": contactId},
+                {"status": false}
+            ]
+        },{"status": true}).exec();
+    },
 
 };
 
@@ -222,7 +233,7 @@ const CONTACT_CONTENT = {
                             <div class="user-address">
                                 <span>&nbsp ${userAddress}</span>
                             </div>
-                            <div class="user-acccept-contact-received" data-uid="${userId}">
+                            <div class="user-approve-request-contact-received" data-uid="${userId}">
                                 Chấp nhận
                             </div>
                             <div class="user-remove-request-contact-received action-danger " data-uid="${userId}">
