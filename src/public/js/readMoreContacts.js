@@ -18,9 +18,10 @@ $(document).ready(function(){
                 
                 $("#contacts>div>ul.contactList").append(`${contact}`); // thêm vào modal thông báo
             });
+            removeContact();
             $(".lds-facebook").css("display","none");
             $("#link-read-more-contacts").css("display","block");
-        }) //query params
+        }); //query params
     });
 
 });

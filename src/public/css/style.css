@@ -1365,3 +1365,7 @@ label:focus,
 .display-important {
   display: inline-block !important;
 }
+
+.read-more-notif{
+  text-align: center;
+}

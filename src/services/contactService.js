@@ -66,6 +66,16 @@ let removeRequestContactReceived = (currentUserId, contactId)=>{
     }); 
 };
 
+let removeContact = (currentUserId, contactId)=>{
+    return new Promise(async (resolve, reject)=>{
+        let removeReq = await ContactModel.model.removeContact(currentUserId, contactId);
+        if(removeReq.n === 0){
+            return reject(false);
+        }
+        resolve(true);
+    }); 
+};
+
 let getContacts = (currentUserId)=>{
     return new Promise(async (resolve, reject)=>{
         try {
@@ -237,5 +247,6 @@ module.exports = {
     readMoreContactsSend: readMoreContactsSend,
     readMoreContactsReceived: readMoreContactsReceived,
     removeRequestContactReceived: removeRequestContactReceived,
-    approveRequestContactReceived: approveRequestContactReceived
+    approveRequestContactReceived: approveRequestContactReceived,
+    removeContact: removeContact
 }
