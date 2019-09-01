@@ -27,6 +27,7 @@ function approveRequestContactReceived (){
                     decreaseNumberNotifContact("count-request-contact-received"); //giảm tab yêu cầu kết bạn xuống 1 ĐV
                     increaseNumberNotifContact("count-contacts");//tăng danh bạ lên 1 ĐV
                     decreaseNumberNotificationContact("noti_contact_counter", 1); //giảm tab thông báo xuống 1 ĐV
+                    removeContact();
                     
                     //xử lý realtime
                     socket.emit("approve-request-contact-received", {contactId: targetId}); // gửi tên sự kiện truyền tham số
@@ -77,8 +78,10 @@ socket.on("response-approve-request-contact-received", function(user){
     </li>
 `;
     $("#contacts").find("ul").prepend(userInfoHtml); //thêm vào tab danh bạ
+    removeContact();
 });
 
 $(document).ready(function(){
     approveRequestContactReceived();
+    
 });
