@@ -684,7 +684,7 @@ label:focus,
 }
 
 .left a.create-group-chat {
-  display: none;
+  display: block;
   float: left;
   width: 40px;
   height: 40px;
@@ -1321,7 +1321,16 @@ label:focus,
   padding: 10px;
 }
 
-.read-more-contacts, .read-more-contacts-received, .read-more-contacts-send{
+.read-more-group-chat, .read-more-user-chat, .read-more-all-chat{
+  text-align: center; 
+}
+
+.tab-content > .active{
+  background-color: #FFFFFF;
+}
+
+.read-more-contacts, .read-more-contacts-received, .read-more-contacts-send
+{
   text-align: center;
 }
 
