@@ -13,17 +13,19 @@ let getAllConversationItems = (currentUserId)=>{
             let usersConversationsPromise = contacts.map( async (contact)=>{ //return về mảng mới
                 if(contact.contactId == currentUserId){
                     let getUserContact = await UserModel.findUserById(contact.userId);
-                    getUserContact.createdAt = contact.createdAt; //do contacts và getUserContact cùng từ mongoose xuất ra nên có thể add createdAt trực tiếp nếu không thì phải chuyển getUserContact thành object bằng lệnh toObject().
+                    getUserContact.updatedAt = contact.updatedAt; //do contacts và getUserContact cùng từ mongoose xuất ra nên có thể add updatedAt trực tiếp nếu không thì phải chuyển getUserContact thành object bằng lệnh toObject().
                     return getUserContact;
                 }else{
-                    return await UserModel.findUserById(contact.contactId);
+                    let getUserContact = await UserModel.findUserById(contact.contactId);
+                    getUserContact.updatedAt = contact.updatedAt; //do contacts và getUserContact cùng từ mongoose xuất ra nên có thể add updatedAt trực tiếp nếu không thì phải chuyển getUserContact thành object bằng lệnh toObject().
+                    return getUserContact;
                 }
             });
             let userConversations = await Promise.all(usersConversationsPromise);
             let groupConversations = await ChatGroupModel.getChatGroups(currentUserId, LIMIT_CONVERSATIONS_TAKEN);
             let allConversations = userConversations.concat(groupConversations);
             allConversations = _.sortBy(allConversations, (item)=>{
-                return -item.createdAt; //sắp xếp từ lớn xuống nhỏ
+                return -item.updatedAt; //sắp xếp từ lớn xuống nhỏ
             })
 
             resolve({
