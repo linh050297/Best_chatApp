@@ -46,14 +46,14 @@ let updateAvatar = (req, res)=>{
             
             //update user
             let userUpdate = await user.updateUser(req.user._id, updateUserItem);
-            let publicIdImg = userUpdate.avatar.replace(/^.*[\\\/]/, '').split('.')[0];
-            //remove old avatar except defaultAvatar
-            if(publicIdImg != "yepj8o8cksysadpsxzgb"){
-              let removeImg =   await cloudinary.uploader.destroy(publicIdImg); //do findByIdAndUpdate bên UserModel khi update sẽ trả về dữ liệu cũ nên ở đây userUpdate.avatar sẽ là hình cũ
-                if(removeImg = "ok"){
-                    console.log(`Remove image ${publicIdImg} success!!!`);
-                }
-            }
+            // let publicIdImg = userUpdate.avatar.replace(/^.*[\\\/]/, '').split('.')[0];
+            // //remove old avatar except defaultAvatar
+            // if(publicIdImg != "yepj8o8cksysadpsxzgb"){
+            //   let removeImg =   await cloudinary.uploader.destroy(publicIdImg); //do findByIdAndUpdate bên UserModel khi update sẽ trả về dữ liệu cũ nên ở đây userUpdate.avatar sẽ là hình cũ
+            //     if(removeImg = "ok"){
+            //         console.log(`Remove image ${publicIdImg} success!!!`);
+            //     }
+            // }
             
             let result = {
                 message: transSuccess.user_info_updated,
