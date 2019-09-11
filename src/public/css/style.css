@@ -1116,6 +1116,14 @@ label:focus,
   float: left;
 }
 
+.right .bubble.me img.avatar-small{
+  margin-left: 10px;
+}
+
+.right .bubble.you img.avatar-small{
+  margin-right: 10px;
+}
+
 .right .bubble.me a {
   float: left;
   border-bottom: 1.5px solid #c8d6e5;
@@ -1377,4 +1385,9 @@ label:focus,
 
 .read-more-notif{
   text-align: center;
+}
+
+#screen-chat{
+  width: 100%;
+  height: 100%;
 }
