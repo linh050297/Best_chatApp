@@ -82,9 +82,9 @@ let getContacts = (currentUserId)=>{
             let contacts = await ContactModel.model.getContacts(currentUserId, LIMIT_NUMBER_TAKEN);
             let users = contacts.map( async (contact)=>{ //return về mảng mới
                 if(contact.contactId == currentUserId){
-                    return await UserModel.findUserById(contact.userId);
+                    return await UserModel.findUserByIdForSessionToUse(contact.userId);
                 }else{
-                    return await UserModel.findUserById(contact.contactId);
+                    return await UserModel.findUserByIdForSessionToUse(contact.contactId);
                 }
                 
             });
@@ -100,7 +100,7 @@ let getContactsSend = (currentUserId)=>{
         try {
             let contacts = await ContactModel.model.getContactsSend(currentUserId, LIMIT_NUMBER_TAKEN);
             let users = contacts.map( async (contact)=>{ //return về mảng mới
-                return await UserModel.findUserById(contact.contactId);
+                return await UserModel.findUserByIdForSessionToUse(contact.contactId);
             });
             resolve(await Promise.all(users)); //do hàm map không đợi await thực thi xong mà nó cứ return ra nên dùng Promise.all để đợi tất cả cùng xong.
         } catch (error) {
@@ -114,7 +114,7 @@ let getContactsReceived = (currentUserId)=>{
         try {
             let contacts = await ContactModel.model.getContactsReceived(currentUserId, LIMIT_NUMBER_TAKEN);
             let users = contacts.map( async (contact)=>{ //return về mảng mới
-                return await UserModel.findUserById(contact.userId);
+                return await UserModel.findUserByIdForSessionToUse(contact.userId);
             });
             resolve(await Promise.all(users)); //do hàm map không đợi await thực thi xong mà nó cứ return ra nên dùng Promise.all để đợi tất cả cùng xong.
         } catch (error) {
