@@ -14,11 +14,11 @@ let getAllConversationItems = (currentUserId)=>{
             let contacts = await ContactModel.model.getContacts(currentUserId, LIMIT_CONVERSATIONS_TAKEN);
             let usersConversationsPromise = contacts.map( async (contact)=>{ //return về mảng mới
                 if(contact.contactId == currentUserId){
-                    let getUserContact = await UserModel.findUserById(contact.userId);
+                    let getUserContact = await UserModel.findUserByIdForSessionToUse(contact.userId);
                     getUserContact.updatedAt = contact.updatedAt; //do contacts và getUserContact cùng từ mongoose xuất ra nên có thể add updatedAt trực tiếp nếu không thì phải chuyển getUserContact thành object bằng lệnh toObject().
                     return getUserContact;
                 }else{
-                    let getUserContact = await UserModel.findUserById(contact.contactId);
+                    let getUserContact = await UserModel.findUserByIdForSessionToUse(contact.contactId);
                     getUserContact.updatedAt = contact.updatedAt; //do contacts và getUserContact cùng từ mongoose xuất ra nên có thể add updatedAt trực tiếp nếu không thì phải chuyển getUserContact thành object bằng lệnh toObject().
                     return getUserContact;
                 }

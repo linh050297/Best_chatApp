@@ -27,8 +27,8 @@ let UserSchema = new Schema({
         email: { type: String, trim: true }
     },
     createdAt: { type: Number, default: Date.now },
-    updateAt: { type: Number, default: null },
-    deleteAt: { type: Number, default: null }
+    updatedAt: { type: Number, default: null },
+    deletedAt: { type: Number, default: null }
 });
 
 UserSchema.statics = {
@@ -41,7 +41,7 @@ UserSchema.statics = {
     },
 
     removeById(id){
-        return this.findOneAndDelete({ _id: id }).exec();
+        return this.findOneAndDelete({ _id: id }).exec(); 
     },
 
     verify(token){
@@ -55,8 +55,12 @@ UserSchema.statics = {
         return this.findOne({"local.verifyToken": token}).exec();
     },
 
-    findUserById(id){
+    findUserByIdToUpdatePassword(id){
         return this.findById(id).exec();
+    },
+
+    findUserByIdForSessionToUse(id){
+        return this.findById(id, {"local.password": 0}).exec();
     },
 
     findCustomDataUser(id){

@@ -6,7 +6,7 @@ require('dotenv').config();
 
 let configSocketIo = (io)=>{
     io.use(passportSocketIo.authorize({
-        cookieParser: cookieParser,       // the same middleware you registrer in express
+        cookieParser: cookieParser,       // the same middleware you register in express
         key:          process.env.SESSION_KEY,       // the name of the cookie where express/connect stores its session_id
         secret:       process.env.SESSION_SECRET,    // the session_secret to parse the cookie
         store:        session.sessionStore,        // we NEED to use a sessionstore. no memorystore please
