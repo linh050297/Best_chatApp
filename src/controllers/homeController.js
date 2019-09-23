@@ -1,5 +1,5 @@
 import { notification, contact, message } from "./../services/index";
-import { bufferToBase64 } from './../helpers/clientHelper';
+import { bufferToBase64, lastItemOfArray, convertTimestampToHumanTime } from './../helpers/clientHelper';
 
 let getHomeController = async (req, res)=>{
     //only 10 item
@@ -19,9 +19,9 @@ let getHomeController = async (req, res)=>{
     let countAllContactsReceived = await contact.countAllContactsReceived(req.user._id);
 
     let getAllConversationItems = await message.getAllConversationItems(req.user._id);
-    let allConversations = getAllConversationItems.allConversations;
-    let userConversations = getAllConversationItems.userConversations;
-    let groupConversations = getAllConversationItems.groupConversations;
+    // let allConversations = getAllConversationItems.allConversations;
+    // let userConversations = getAllConversationItems.userConversations;
+    // let groupConversations = getAllConversationItems.groupConversations;
     let allConversationWithMessages = getAllConversationItems.allConversationWithMessages;
     
     return res.render("main/home/home",{
@@ -36,11 +36,13 @@ let getHomeController = async (req, res)=>{
         countAllContacts: countAllContacts,
         countAllContactsSend: countAllContactsSend,
         countAllContactsReceived: countAllContactsReceived,
-        allConversations: allConversations,
-        userConversations: userConversations,
-        groupConversations: groupConversations,
+        // allConversations: allConversations,
+        lastItemOfArray: lastItemOfArray,
+        // userConversations: userConversations,
+        // groupConversations: groupConversations,
         allConversationWithMessages: allConversationWithMessages,
-        bufferToBase64: bufferToBase64
+        bufferToBase64: bufferToBase64,
+        convertTimestampToHumanTime: convertTimestampToHumanTime
     });
 };
 

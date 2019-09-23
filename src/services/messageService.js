@@ -23,9 +23,9 @@ let getAllConversationItems = (currentUserId)=>{
                     return getUserContact;
                 }
             });
-            let userConversations = await Promise.all(usersConversationsPromise);
-            let groupConversations = await ChatGroupModel.getChatGroups(currentUserId, LIMIT_CONVERSATIONS_TAKEN);
-            let allConversations = userConversations.concat(groupConversations);
+            // let userConversations = await Promise.all(usersConversationsPromise);
+            // let groupConversations = await ChatGroupModel.getChatGroups(currentUserId, LIMIT_CONVERSATIONS_TAKEN);
+            // let allConversations = userConversations.concat(groupConversations);
             
             allConversations = _.sortBy(allConversations, (item)=>{
                 return -item.updatedAt; //sắp xếp từ lớn xuống nhỏ
@@ -44,9 +44,9 @@ let getAllConversationItems = (currentUserId)=>{
             });
 
             resolve({
-                userConversations: userConversations,
-                groupConversations: groupConversations,
-                allConversations: allConversations,
+                // userConversations: userConversations,
+                // groupConversations: groupConversations,
+                // allConversations: allConversations,
                 allConversationWithMessages: allConversationWithMessages
             });
         } catch (error) {
