@@ -23,18 +23,25 @@ let getAllConversationItems = (currentUserId)=>{
                     return getUserContact;
                 }
             });
-            // let userConversations = await Promise.all(usersConversationsPromise);
-            // let groupConversations = await ChatGroupModel.getChatGroups(currentUserId, LIMIT_CONVERSATIONS_TAKEN);
-            // let allConversations = userConversations.concat(groupConversations);
+            let userConversations = await Promise.all(usersConversationsPromise);
+            let groupConversations = await ChatGroupModel.getChatGroups(currentUserId, LIMIT_CONVERSATIONS_TAKEN);
+            let allConversations = userConversations.concat(groupConversations);
             
             allConversations = _.sortBy(allConversations, (item)=>{
                 return -item.updatedAt; //sắp xếp từ lớn xuống nhỏ
             });
             //get messages to apply screenchat
             let allConversationWithMessagesPromise = allConversations.map(async(conversation) => { //lấy tin nhắn của từng cuộc hội thoại
-                let getMessages = await MessageModel.model.getMessages(currentUserId, conversation._id, LIMIT_MESSAGES_TAKEN);
                 conversation = conversation.toObject(); //phải biến đổi conversation thành object để có thể thêm message vào
-                conversation.messages = getMessages;
+
+                if(conversation.members){
+                    let getMessages = await MessageModel.model.getMessagesInGroup( conversation._id, LIMIT_MESSAGES_TAKEN);
+                    conversation.messages = getMessages;
+                }else{
+                    let getMessages = await MessageModel.model.getMessagesInPersonal(currentUserId, conversation._id, LIMIT_MESSAGES_TAKEN);
+                    conversation.messages = getMessages;
+                }
+                
                 return conversation;
             });
             let allConversationWithMessages = await Promise.all(allConversationWithMessagesPromise);
