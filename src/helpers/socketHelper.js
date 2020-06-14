@@ -9,10 +9,9 @@ export let pushSocketIdToArray = (clients, userId, socketId)=>{
 
 export let emitNotifyToArray = (clients, userId, io, eventName, data)=>{
     //gửi trả thông báo về 1 user được nhận thông báo kết bạn
-        clients[userId].forEach(socketId => {
-          return  io.sockets.connected[socketId].emit(eventName, data); // khi người dùng online thì mới gửi
-        });
-    
+    clients[userId].forEach(socketId => {
+        return  io.sockets.connected[socketId].emit(eventName, data); // khi người dùng online thì mới gửi
+    });
 };
 
 export let removeSocketIdFromArray = (clients, userId, socket)=>{

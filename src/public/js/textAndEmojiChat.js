@@ -16,7 +16,7 @@ function textAndEmojiChat(divId){
                 dataTextEmojiForSend.isChatGroup = true;
             }
 
-            //cal send message
+            //call send message
             $.post("/message/add-new-text-emoji", dataTextEmojiForSend, function(data){
                 //success
             }).fail(function(res){
