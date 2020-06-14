@@ -181,6 +181,28 @@ ContactSchema.statics = {
         }).exec();
     },
 
+    /**
+     * update contact (chat personal) when has new message
+     * @param {string} userId current userId
+     * @param {string} contactId contactId
+     */
+    updateWhenHasNewMessage(userId, contactId){ 
+        return this.update({
+            $or: [
+                {$and: [
+                    {"userId": userId},
+                    {"contactId": contactId}
+                ]},
+                {$and: [
+                    {"contactId": userId},
+                    {"userId": contactId}
+                ]}
+            ]
+        }, {
+            "updatedAt": Date.now()
+        }).exec();
+    },
+
 };
 
 const CONTACT_TYPES = {

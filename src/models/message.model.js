@@ -42,7 +42,15 @@ MessageSchema.statics = {
 
     getMessagesInGroup(receiverId, limit){
         return this.find({"receiverId": receiverId}).sort({"createdAt": 1}).limit(limit).exec();
-    }
+    },
+
+    /**
+     * create new message
+     * @param {object} item 
+     */
+    createNew(item){
+        return this.create(item);
+    },
 
 }
 
