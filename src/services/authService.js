@@ -10,7 +10,7 @@ let saltRounds = 7;
 let register =  ( email, gender, password, protocol, host)=>{
     return new Promise( async ( resolve, reject )=>{
 
-        let userByEmail = await UserModel.findByEmail(email);
+        let userByEmail = await UserModel.findByEmail(email); 
         if( userByEmail ){
             if(userByEmail.deleteAt != null){
                 return reject(transErrors.account_removed);
