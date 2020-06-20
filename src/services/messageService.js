@@ -38,10 +38,10 @@ let getAllConversationItems = (currentUserId)=>{
 
                 if(conversation.members){
                     let getMessages = await MessageModel.model.getMessagesInGroup( conversation._id, LIMIT_MESSAGES_TAKEN);
-                    conversation.messages = getMessages;
+                    conversation.messages = _.reverse(getMessages);
                 }else{
                     let getMessages = await MessageModel.model.getMessagesInPersonal(currentUserId, conversation._id, LIMIT_MESSAGES_TAKEN);
-                    conversation.messages = getMessages;
+                    conversation.messages = _.reverse(getMessages);
                 }
                 
                 return conversation;
@@ -128,7 +128,7 @@ let addNewTextEmoji = (sender, receiverId, messageVal, isChatGroup)=>{
                 //tạo mới message và update groupchat
                 let newMessage = await MessageModel.model.createNew(newMessageItem);
                 //update contact
-                await ContactModel.updateWhenHasNewMessage( sender.id, getUserReceiver._id );
+                await ContactModel.model.updateWhenHasNewMessage( sender.id, getUserReceiver._id );
                 resolve(newMessage);
             }
 
