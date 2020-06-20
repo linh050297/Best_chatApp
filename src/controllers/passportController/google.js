@@ -2,6 +2,7 @@ require('dotenv').config();
 import passport from "passport";
 import passportGoogle from "passport-google-oauth";
 import UserModel from "./../../models/user.model";
+import ChatGroupModel from "./../../models/chatGroup.model";
 import {transErrors, transSuccess} from "./../../../lang/vi";
 
 let GoogleStrategy = passportGoogle.OAuth2Strategy;
@@ -56,14 +57,18 @@ let initPassportGoogle = ()=>{
 
     //fun dưới dc gọi bằng passport.session() bên server.js
     //trả về userinfo cho req.user
-    passport.deserializeUser((id, done)=>{
-        UserModel.findUserByIdForSessionToUse(id)
-        .then( user => {
+    passport.deserializeUser(async(id, done)=>{
+        try {
+            let user = await UserModel.findUserByIdForSessionToUse(id);
+            let getChatGroupIds = await ChatGroupModel.getChatGroupIdsByUser(user._id);
+
+            user = user.toObject();
+            user.chatGroupIds = getChatGroupIds;
             return done(null, user);
-        })
-        .catch( error => {
+            
+        } catch (error) {
             return done(error, null);
-        });
+        }
     });
 } 
 

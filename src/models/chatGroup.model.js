@@ -38,6 +38,12 @@ ChatGroupSchema.statics = {
         }).exec();
     },
 
+    getChatGroupIdsByUser(userId){
+        return this.find({
+            "members": {$elemMatch: {"userId": userId}}
+        }, {_id: 1}).exec();
+    },
+
 
 }
 
